@@ -1493,6 +1493,7 @@ platform_node = NodePath("../../Platforms")
 explosion_node = NodePath("../../Explosions")
 time = 20.0
 timerNode = NodePath("../../Timer")
+nextLevel = "res://main.tscn"
 tilemap = NodePath("../../TileMap")
 sceneName = "res://level_2.tscn"
 
