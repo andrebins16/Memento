@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://djqu2i1t874xl"]
+
+[ext_resource type="Script" path="res://Collectables/Cherry.gd" id="1_sbv5n"]
+[ext_resource type="Texture2D" uid="uid://bx6eoc8oal0m4" path="res://audios/photo.png" id="2_2yugo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avvul"]
+size = Vector2(16, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3uts1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2yugo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Cherry" type="Area2D"]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_sbv5n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_avvul")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 4.76837e-07)
+scale = Vector2(0.04, 0.04)
+sprite_frames = SubResource("SpriteFrames_3uts1")
+animation = &"idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

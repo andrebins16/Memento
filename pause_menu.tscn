@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbiqnl7wpfhuf"]
+
+[ext_resource type="FontFile" uid="uid://bbgsn281m83fc" path="res://audios/Minecraft.ttf" id="1_d0ucv"]
+[ext_resource type="Script" path="res://pause_menu.gd" id="1_wupal"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wupal")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1155.0
+offset_bottom = 651.0
+color = Color(0.0823529, 0.0431373, 0.164706, 1)
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer"]
+offset_right = 1154.0
+offset_bottom = 646.0
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_d0ucv")
+theme_override_font_sizes/font_size = 80
+text = "Paused
+"
+
+[node name="Resume" type="Button" parent="CanvasLayer/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_d0ucv")
+theme_override_font_sizes/font_size = 40
+text = "Resume
+"
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/CenterContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_d0ucv")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu
+"
+
+[connection signal="pressed" from="CanvasLayer/CenterContainer2/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer2/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
