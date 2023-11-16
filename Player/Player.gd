@@ -30,8 +30,7 @@ var double_jump_counter = 0
 @export var time=10.0
 @export var timerNode:Timer
 
-@export var nextLevel= "res://world_2.tscn"
-var nextLevelBool = false
+
 
 var respawning = false
 
@@ -58,20 +57,33 @@ var step_audio=preload("res://audios/step.wav")
 
 const lines:Array[String] = ["Ola genteee","VAmossss"]
 
+@export var levelNumber:int
 @export var sceneName=""
+@export var nextLevel= "res://world_2.tscn"
+var nextLevelBool = false
+
 
 #@onready var pause_menu=$Camera2D/PauseMenu
 var pause_menu=preload("res://pause_menu.tscn")
 var pause_menu_instance
 var paused=false
 
+@onready var pause_button = $"../../UI/Button"
+
+
+@onready var transition_node= $"../../Transition"
+@onready var transition = get_node("../../Transition/Fill")
+@onready var anim_transition = get_node("../../Transition/Fill/Animation")
+
+@onready var reward = preload("res://reward/reward.tscn")
+@onready var rewardpos=$"../../Cherry".position
+var rewardwait=true
+
 #######################################################################################
 func _ready():
 	position.x=initialX
 	position.y=initialY
-	timerNode.wait_time=time
-	if time>0:
-		timerNode.start()
+	
 	var used = tilemap.get_used_rect()
 # Defina os limites da câmera para os limites do TileMap
 	camera.limit_left = used.position.x * tilemap.cell_quadrant_size
@@ -87,14 +99,30 @@ func _ready():
 	#pause_menu.finished_pausing.connect(pauseMenu)
 	health=1
 	paused=false
+	transition_node.visible=false
 	
-	print(paused)
+	timerNode.wait_time=time
+	_out_transition(2,1.0,0) 
+	await anim_transition.animation_finished
+	transition_node.visible=false
+	
+	if time>0:
+		timerNode.start()
+
+	GameManager.currentLevel=sceneName
+	GameManager.currentLevelNumber=levelNumber
+	GameManager.nextLevel=nextLevel
+
+	
 	#pause_menu.hide()
-	
+
 	
 
 #######################################################################################
 func _physics_process(delta):
+	
+		
+		
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
 		
@@ -102,7 +130,12 @@ func _physics_process(delta):
 		pauseMenu()
 		
 	if Input.is_action_just_pressed("next") or nextLevelBool:
-		get_tree().change_scene_to_file(nextLevel)
+		var reward_instance = reward.instantiate()
+		reward_instance.destination=camera.get_screen_center_position()
+		reward_instance.finished_animation.connect(_next_level_transition)
+		reward_instance.position=rewardpos
+		platform_node.add_child(reward_instance)
+		nextLevelBool=false
 	
 	
 	if health>0 and not respawning and not paused:
@@ -112,7 +145,7 @@ func _physics_process(delta):
 			createPlatform()
 		if Input.is_action_just_pressed("explode"):
 			createExplosion()
-			
+		
 	cameraMove(delta)
 
 
@@ -182,25 +215,26 @@ func resetPos():
 
 #######################################################################################
 func fullDeath():
-	
-			health=0
-			timerNode.stop()
-			audio_player.volume_db=0
-			audio_player.stream=death_audio
-			audio_player.play()
-			var tween = get_tree().create_tween()
-			var tween2= get_tree().create_tween()
-			var tween5= get_tree().create_tween()
-			tween.tween_property(animated_sprite,"modulate:g", 0.2,2)
-			tween2.tween_property(animated_sprite,"modulate:b", 0.2,2)
-			tween5.tween_property(animated_sprite, "rotation_degrees", 1440, 2)
-			await tween.finished
-			await tween2.finished
-			animated_sprite.modulate=Color(1, 1, 1, 1)
-			animated_sprite.rotation_degrees=0
-			self.queue_free()
-			GameManager.currentLevel=sceneName
-			get_tree().change_scene_to_file("res://deathscreen.tscn")
+	health=0
+	timerNode.stop()
+	audio_player.volume_db=0
+	audio_player.stream=death_audio
+	audio_player.play()
+	var tween = get_tree().create_tween()
+	var tween2= get_tree().create_tween()
+	var tween5= get_tree().create_tween()
+	tween.tween_property(animated_sprite,"modulate:g", 0.2,2)
+	tween2.tween_property(animated_sprite,"modulate:b", 0.2,2)
+	tween5.tween_property(animated_sprite, "rotation_degrees", 1440, 2)
+#	await tween.finished
+#	await tween2.finished
+	animated_sprite.modulate=Color(1, 1, 1, 1)
+	animated_sprite.rotation_degrees=0
+	_in_transition(4,1.0,0) 
+	await anim_transition.animation_finished
+	transition_node.visible=false
+	self.queue_free()
+	get_tree().change_scene_to_file("res://deathscreen.tscn")
 
 
 #######################################################################################
@@ -351,14 +385,56 @@ func handleJump(delta):
 #############################################
 
 func pauseMenu():
-
+	
 	if paused:
+		pause_button.show()
+		pause_button.set_disabled(false)
 		pause_menu_instance.queue_free()
 		Engine.time_scale=1
 	else:
+		pause_button.hide()
+		pause_button.set_disabled(true)
 		pause_menu_instance=pause_menu.instantiate()
 		pause_menu_instance.finished_pausing.connect(pauseMenu)
 		platform_node.add_child(pause_menu_instance)
 		Engine.time_scale=0
 	
 	paused = not paused
+
+
+func _on_button_pressed():
+	pauseMenu()
+	
+func _in_transition(type,duration,player):
+	print("inn")
+	transition_node.visible=true
+	transition.material.set_shader_parameter("type",type)
+	anim_transition.speed_scale=duration
+	if type==1:
+		transition.material.set_shader_parameter("player",player)
+	anim_transition.play("transition_in")
+	
+
+	
+	
+	
+func _out_transition(type,duration,player):
+	transition_node.visible=true
+	transition.material.set_shader_parameter("type",type)
+	anim_transition.speed_scale=duration
+	if type==1:
+		transition.material.set_shader_parameter("player",player)
+	anim_transition.play("transition_out")
+	
+	
+	
+func _next_level_transition():
+	_in_transition(2,0.7,0)
+	await anim_transition.animation_finished 
+	get_tree().change_scene_to_file("res://reward_screen/reward_screen.tscn")
+
+	
+
+	
+
+

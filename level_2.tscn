@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://374mjkt2uvxr"]
+[gd_scene load_steps=16 format=3 uid="uid://374mjkt2uvxr"]
 
 [ext_resource type="Texture2D" uid="uid://d0jiv3ys6rvc8" path="res://Sunny-land-files/Sunny-land-assets-files/PNG/environment/layers/tileset.png" id="1_3eyyp"]
 [ext_resource type="Script" path="res://level_2.gd" id="1_aidmh"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://djqu2i1t874xl" path="res://Collectables/Cherry.tscn" id="4_l0mu3"]
 [ext_resource type="FontFile" uid="uid://bbgsn281m83fc" path="res://audios/Minecraft.ttf" id="4_urbi6"]
 [ext_resource type="Script" path="res://BG/BG.gd" id="5_47odd"]
+[ext_resource type="Texture2D" uid="uid://so0gw2yeli1u" path="res://audios/pause.png" id="6_4cbdw"]
 [ext_resource type="Texture2D" uid="uid://djqg7p5u451f3" path="res://Jungle Asset Pack/BACKGROUND.png" id="6_sllt4"]
 [ext_resource type="PackedScene" uid="uid://falitdl13dpd" path="res://Spikes/spikes.tscn" id="7_l05my"]
+[ext_resource type="PackedScene" uid="uid://dekdiknfiuknq" path="res://transition/transition.tscn" id="11_ou1la"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1kt23"]
 texture = ExtResource("1_3eyyp")
@@ -1493,9 +1495,10 @@ platform_node = NodePath("../../Platforms")
 explosion_node = NodePath("../../Explosions")
 time = 20.0
 timerNode = NodePath("../../Timer")
-nextLevel = "res://main.tscn"
 tilemap = NodePath("../../TileMap")
+levelNumber = 1
 sceneName = "res://level_2.tscn"
+nextLevel = "res://main.tscn"
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -1509,6 +1512,14 @@ size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_urbi6")
 theme_override_font_sizes/font_size = 33
 script = SubResource("GDScript_dm64b")
+
+[node name="Button" type="Button" parent="UI"]
+offset_left = 1083.0
+offset_top = 13.0
+offset_right = 1521.0
+offset_bottom = 421.0
+scale = Vector2(0.12, 0.12)
+icon = ExtResource("6_4cbdw")
 
 [node name="Platforms" type="Node2D" parent="."]
 
@@ -1603,4 +1614,7 @@ position = Vector2(1103, 344)
 move = false
 speed = 0
 
+[node name="Transition" parent="." instance=ExtResource("11_ou1la")]
+
+[connection signal="pressed" from="UI/Button" to="Player/Player" method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="Player/Player" method="_on_timer_timeout" flags=18]

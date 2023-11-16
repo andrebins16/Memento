@@ -1502,9 +1502,9 @@ platform_node = NodePath("../../Platforms")
 explosion_node = NodePath("../../Explosions")
 time = 0.0
 timerNode = NodePath("../../Timer")
+nextLevel = "res://level_2.tscn"
 tilemap = NodePath("../../TileMap")
 sceneName = "res://tutorial.tscn"
-nextLevel = "res://level_2.tscn"
 
 [node name="UI" type="CanvasLayer" parent="."]
 

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b74su2ofbblhn"]
+
+[ext_resource type="Script" path="res://reward/reward.gd" id="1_rbgim"]
+
+[node name="Reward" type="Sprite2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_rbgim")
+imgs = ["res://audios/photo.png", "res://audios/pause.png"]

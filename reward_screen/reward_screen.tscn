@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://quqeh4ekvjv8"]
+
+[ext_resource type="FontFile" uid="uid://bbgsn281m83fc" path="res://audios/Minecraft.ttf" id="1_0bmx8"]
+[ext_resource type="Script" path="res://reward_screen/reward_screen.gd" id="1_didop"]
+[ext_resource type="PackedScene" uid="uid://dekdiknfiuknq" path="res://transition/transition.tscn" id="3_b32pg"]
+[ext_resource type="Texture2D" uid="uid://crd33vvta8xqn" path="res://audios/imgcomp.png" id="3_xvk82"]
+
+[node name="RewardScreen" type="Node2D"]
+script = ExtResource("1_didop")
+imgs = Array[String](["res://audios/imgcomp.png", "res://audios/imgcomp.png"])
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1155.0
+offset_bottom = 651.0
+color = Color(0.0823529, 0.0431373, 0.164706, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 241.0
+offset_top = 62.0
+offset_right = 866.0
+offset_bottom = 145.0
+theme_override_fonts/font = ExtResource("1_0bmx8")
+theme_override_font_sizes/font_size = 80
+text = "Congratulations!"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(574, 316)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_xvk82")
+
+[node name="Transition" parent="." instance=ExtResource("3_b32pg")]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_left = 3.0
+offset_top = 374.0
+offset_right = 1153.0
+offset_bottom = 650.0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Menu" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0bmx8")
+theme_override_font_sizes/font_size = 40
+text = "Menu
+"
+
+[node name="next" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_0bmx8")
+theme_override_font_sizes/font_size = 40
+text = "Next Level
+"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/next" to="." method="_on_next_pressed"]

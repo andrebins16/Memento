@@ -1498,13 +1498,26 @@ layer_0/tile_data = PackedInt32Array(3997776, 1376256, 18, 2162704, 65536, 3, 22
 position = Vector2(112, 572)
 initialX = 112
 initialY = 572
+health = null
+speed = null
+jump_velocity = null
+gravity = null
+friction = null
+acceleration = null
+resistance = null
+jump_buffer_time = null
+coyote_time = null
+platform = null
 platform_node = NodePath("../../Platforms")
+explosion = null
 explosion_node = NodePath("../../Explosions")
 time = 0.0
 timerNode = NodePath("../../Timer")
-tilemap = NodePath("../../TileMap")
-sceneName = "res://tutorial.tscn"
 nextLevel = "res://level_2.tscn"
+tilemap = NodePath("../../TileMap")
+interp_speed = null
+lookahead = null
+sceneName = "res://tutorial.tscn"
 
 [node name="UI" type="CanvasLayer" parent="."]
 

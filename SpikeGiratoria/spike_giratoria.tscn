@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cn32p3jx71o7g"]
+
+[ext_resource type="Script" path="res://SpikeGiratoria/SpikeGiratoria.gd" id="1_j8clq"]
+[ext_resource type="Script" path="res://Spikes/Spikes.gd" id="2_tn72u"]
+[ext_resource type="Texture2D" uid="uid://cgv23bndt4mtp" path="res://Sunny-land-files/Sunny-land-assets-files/PNG/environment/props/spikes-top.png" id="3_pxu53"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_q6mky"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbvqe"]
+size = Vector2(100, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcnv4"]
+size = Vector2(98, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flq8c"]
+size = Vector2(100, 20)
+
+[node name="SpikeGiratoria" type="Node2D"]
+script = ExtResource("1_j8clq")
+
+[node name="Spikes" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_q6mky")
+lock_rotation = true
+script = ExtResource("2_tn72u")
+move = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Spikes"]
+position = Vector2(-2.86102e-06, 4.76837e-07)
+scale = Vector2(6.53333, 2)
+texture = ExtResource("3_pxu53")
+
+[node name="Area2D" type="Area2D" parent="Spikes"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes/Area2D"]
+position = Vector2(0, -5.96046e-08)
+shape = SubResource("RectangleShape2D_rbvqe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes"]
+position = Vector2(0, 2.38419e-07)
+shape = SubResource("RectangleShape2D_gcnv4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_flq8c")
+
+[connection signal="body_entered" from="Spikes/Area2D" to="Spikes" method="_on_area_2d_body_entered" flags=18]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
