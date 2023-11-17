@@ -415,9 +415,7 @@ func _in_transition(type,duration,player):
 	anim_transition.play("transition_in")
 	
 
-	
-	
-	
+
 func _out_transition(type,duration,player):
 	transition_node.visible=true
 	transition.material.set_shader_parameter("type",type)

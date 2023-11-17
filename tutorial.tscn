@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://0tp2kukspoi4"]
+[gd_scene load_steps=16 format=3 uid="uid://0tp2kukspoi4"]
 
 [ext_resource type="Texture2D" uid="uid://d0jiv3ys6rvc8" path="res://Sunny-land-files/Sunny-land-assets-files/PNG/environment/layers/tileset.png" id="1_0fjbe"]
 [ext_resource type="Script" path="res://tutorial.gd" id="1_03wtd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://so0gw2yeli1u" path="res://audios/pause.png" id="6_0c010"]
 [ext_resource type="Texture2D" uid="uid://djqg7p5u451f3" path="res://Jungle Asset Pack/BACKGROUND.png" id="6_yr3b3"]
 [ext_resource type="PackedScene" uid="uid://dekdiknfiuknq" path="res://transition/transition.tscn" id="10_7g4jp"]
+[ext_resource type="PackedScene" uid="uid://b1kvvkwe5t4wv" path="res://Shots/shooter.tscn" id="11_yb6od"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1kt23"]
 texture = ExtResource("1_0fjbe")
@@ -1557,6 +1558,12 @@ metadata/_edit_lock_ = true
 [node name="Explosions" type="Node2D" parent="."]
 
 [node name="Transition" parent="." instance=ExtResource("10_7g4jp")]
+visible = false
+
+[node name="Shooter" parent="." node_paths=PackedStringArray("shot_node") instance=ExtResource("11_yb6od")]
+position = Vector2(476, 274)
+delay = 2.0
+shot_node = NodePath("../Platforms")
 
 [connection signal="pressed" from="UI/Button" to="Player/Player" method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="Player/Player" method="_on_timer_timeout" flags=18]
