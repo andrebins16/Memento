@@ -9,7 +9,7 @@ size = Vector2(95, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qwp8r"]
 size = Vector2(98, 20)
 
-[node name="SpikeGenerator" type="StaticBody2D"]
+[node name="SpikeGenerator" type="StaticBody2D" groups=["shotDestroy"]]
 script = ExtResource("1_dk5an")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

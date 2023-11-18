@@ -86,7 +86,7 @@ _data = {
 "explosion": SubResource("Animation_chqfd")
 }
 
-[node name="Explosion" type="StaticBody2D"]
+[node name="Explosion" type="StaticBody2D" groups=["shotDestroy"]]
 scale = Vector2(5, 5)
 script = ExtResource("1_0adx1")
 

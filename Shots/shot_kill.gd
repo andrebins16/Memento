@@ -26,6 +26,8 @@ func _on_area_2d_body_entered(body):
 		body.resetPos()
 		#print("kill")
 	else:
-		#print(body)
-		if ( not body.name == "ShotKill" and not body.name=="Shooter") :
+		var groups=body.get_groups()
+		print("name")
+		print(body.name)
+		if (body.name.begins_with("Platform") or body.name.begins_with("Tile") or body.name.begins_with("Spike")) :
 			queue_free()

@@ -1,6 +1,7 @@
 extends Node2D
 
-@export var size = 10
+@export var size = 10.0
+
 @export var speed = 0.1
 
 @onready var spike=$Spikes
@@ -10,10 +11,10 @@ extends Node2D
 @onready var area=$Area2D
 
 func _ready():
-	sprite.scale=Vector2(6.533*size,2*size)
-	col1.scale=Vector2(size,size)
-	col2.scale=Vector2(size,size)
-	area.scale=Vector2(size,size)
+	sprite.scale=Vector2(6.533*size,size)
+	col1.scale=Vector2(size*1.02,size/1.98)
+	col2.scale=Vector2(size,size/2)
+	area.scale=Vector2(size,size/2)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	rotation+=speed

@@ -9,7 +9,7 @@ friction = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ddsgr"]
 size = Vector2(94, 54)
 
-[node name="Platform" type="StaticBody2D" groups=["destroy", "platform"]]
+[node name="Platform" type="StaticBody2D" groups=["destroy", "platform", "shotDestroy"]]
 scale = Vector2(0.8, 0.8)
 physics_material_override = SubResource("PhysicsMaterial_lqe02")
 script = ExtResource("1_sp8fd")

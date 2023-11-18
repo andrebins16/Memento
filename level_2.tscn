@@ -1498,7 +1498,7 @@ timerNode = NodePath("../../Timer")
 tilemap = NodePath("../../TileMap")
 levelNumber = 1
 sceneName = "res://level_2.tscn"
-nextLevel = "res://main.tscn"
+nextLevel = "res://level_3.tscn"
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -1615,6 +1615,7 @@ move = false
 speed = 0
 
 [node name="Transition" parent="." instance=ExtResource("11_ou1la")]
+visible = false
 
 [connection signal="pressed" from="UI/Button" to="Player/Player" method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="Player/Player" method="_on_timer_timeout" flags=18]

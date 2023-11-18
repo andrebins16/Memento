@@ -12,7 +12,7 @@ size = Vector2(100, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gcnv4"]
 size = Vector2(98, 18)
 
-[node name="Spikes" type="RigidBody2D"]
+[node name="Spikes" type="RigidBody2D" groups=["shotDestroy"]]
 physics_material_override = SubResource("PhysicsMaterial_q6mky")
 lock_rotation = true
 script = ExtResource("1_tcxhm")

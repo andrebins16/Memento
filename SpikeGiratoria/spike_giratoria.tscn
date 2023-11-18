@@ -16,7 +16,7 @@ size = Vector2(98, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_flq8c"]
 size = Vector2(100, 20)
 
-[node name="SpikeGiratoria" type="Node2D"]
+[node name="SpikeGiratoria" type="Node2D" groups=["shotDestroy"]]
 script = ExtResource("1_j8clq")
 
 [node name="Spikes" type="RigidBody2D" parent="."]
