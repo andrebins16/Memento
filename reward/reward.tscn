@@ -5,4 +5,4 @@
 [node name="Reward" type="Sprite2D"]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_rbgim")
-imgs = Array[String](["res://audios/photo.png", "res://audios/pause.png", "res://audios/pause.png", "res://audios/pause.png", "res://audios/pause.png"])
+imgs = Array[String](["res://audios/cortes/c1.PNG", "res://audios/cortes/c2.PNG", "res://audios/cortes/c3.PNG", "res://audios/cortes/c4.PNG", "res://audios/cortes/c5.PNG", "res://audios/cortes/c6.PNG", "res://audios/cortes/c7.PNG", "res://audios/cortes/c8.PNG", "res://audios/cortes/c9.PNG", "res://audios/cortes/c10.PNG", "res://audios/cortes/c11.PNG", "res://audios/cortes/c12.PNG"])

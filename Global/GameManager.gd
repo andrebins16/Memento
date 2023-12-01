@@ -21,6 +21,7 @@ func start_dialog(position:Vector2, lines:Array[String]):
 	
 	dialog_lines=lines
 	text_box_position=position
+	current_line_index=0
 	
 	show_text_box()
 	is_dialog_active=true
@@ -63,3 +64,9 @@ func nextLine():
 		current_line_index=0
 		return
 	show_text_box()
+	
+	
+	
+func killBox():
+	text_box.queue_free()
+	

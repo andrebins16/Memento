@@ -11,6 +11,8 @@ func _ready():
 	if move:
 		$Sprite2D.modulate.g=0.4
 		$Sprite2D.modulate.b=0.4
+	if GameManager.currentLevelNumber>5:
+		$Sprite2D.modulate = Color("#2059ff")
 
 func _physics_process(delta):
 	if move:
@@ -22,13 +24,13 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	print("bateu")
+	
 	if body.name == "Player" and not body.respawning:
 		#body.health =0
 		body.resetPos()
 		print("baaaaaay")
 	else:
-		print(body)
+		
 		if ( not body.name == "Spikes") and move:
 			await get_tree().create_timer(0.3).timeout
 			queue_free()

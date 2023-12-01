@@ -24,14 +24,17 @@ texture = ExtResource("2_sr6a4")
 metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2(0, -5.96046e-08)
 shape = SubResource("RectangleShape2D_rbvqe")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 2.38419e-07)
 shape = SubResource("RectangleShape2D_gcnv4")
 metadata/_edit_lock_ = true

@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://da4oee7oy3evv"]
+
+[ext_resource type="PackedScene" uid="uid://dtxcspqnovf4g" path="res://Player/Player.tscn" id="2_h5ehs"]
+[ext_resource type="FontFile" uid="uid://bbgsn281m83fc" path="res://audios/Minecraft.ttf" id="3_onux2"]
+[ext_resource type="Texture2D" uid="uid://so0gw2yeli1u" path="res://audios/pause.png" id="4_uogk2"]
+[ext_resource type="PackedScene" uid="uid://djqu2i1t874xl" path="res://Collectables/Cherry.tscn" id="5_pdujh"]
+[ext_resource type="Script" path="res://BG/BG.gd" id="6_evd10"]
+[ext_resource type="Texture2D" uid="uid://djqg7p5u451f3" path="res://Jungle Asset Pack/BACKGROUND.png" id="7_3j5lf"]
+[ext_resource type="PackedScene" uid="uid://dekdiknfiuknq" path="res://transition/transition.tscn" id="8_flh73"]
+
+[sub_resource type="GDScript" id="GDScript_dm64b"]
+script/source = "extends Label
+
+@onready var timerNode = get_node(\"../../Timer\")
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	text = \"Time: \" + str(round(timerNode.time_left *100.0)/100.0)
+"
+
+[node name="LEVEL6" type="Node2D"]
+metadata/_edit_vertical_guides_ = []
+
+[node name="Player" type="Node2D" parent="." groups=["destroy"]]
+
+[node name="Player" parent="Player" node_paths=PackedStringArray("platform_node", "explosion_node", "timerNode") instance=ExtResource("2_h5ehs")]
+position = Vector2(60, 540)
+initialX = 60
+initialY = 540
+platform_node = NodePath("../../Platforms")
+explosion_node = NodePath("../../Explosions")
+time = 20.0
+timerNode = NodePath("../../Timer")
+levelNumber = 6
+sceneName = "res://level_6.tscn"
+nextLevel = "res://main.tscn"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Timer" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 21.0
+offset_bottom = 55.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_onux2")
+theme_override_font_sizes/font_size = 33
+script = SubResource("GDScript_dm64b")
+
+[node name="Button" type="Button" parent="UI"]
+offset_left = 1083.0
+offset_top = 13.0
+offset_right = 1521.0
+offset_bottom = 421.0
+scale = Vector2(0.12, 0.12)
+icon = ExtResource("4_uogk2")
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Cherry" parent="." instance=ExtResource("5_pdujh")]
+position = Vector2(1539, 531)
+
+[node name="BG" type="ParallaxBackground" parent="."]
+script = ExtResource("6_evd10")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(2450, 0)
+
+[node name="Back" type="Sprite2D" parent="BG/ParallaxLayer"]
+position = Vector2(614.5, 324)
+scale = Vector2(3.19531, 2.68333)
+texture = ExtResource("7_3j5lf")
+
+[node name="Back2" type="Sprite2D" parent="BG/ParallaxLayer"]
+position = Vector2(1838, 324)
+scale = Vector2(3.19531, 2.68333)
+texture = ExtResource("7_3j5lf")
+metadata/_edit_lock_ = true
+
+[node name="Explosions" type="Node2D" parent="."]
+
+[node name="Transition" parent="." instance=ExtResource("8_flh73")]
+visible = false
+
+[node name="TimerFala" type="Timer" parent="."]
+
+[connection signal="pressed" from="UI/Button" to="Player/Player" method="_on_button_pressed" flags=18]
+[connection signal="timeout" from="Timer" to="Player/Player" method="_on_timer_timeout" flags=18]
+[connection signal="timeout" from="TimerFala" to="." method="_on_timer_fala_timeout" flags=18]

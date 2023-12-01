@@ -1617,5 +1617,8 @@ speed = 0
 [node name="Transition" parent="." instance=ExtResource("11_ou1la")]
 visible = false
 
+[node name="TimerFala" type="Timer" parent="."]
+
 [connection signal="pressed" from="UI/Button" to="Player/Player" method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="Player/Player" method="_on_timer_timeout" flags=18]
+[connection signal="timeout" from="TimerFala" to="." method="_on_timer_fala_timeout"]

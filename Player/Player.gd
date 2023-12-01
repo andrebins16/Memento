@@ -108,10 +108,13 @@ func _ready():
 	
 	if time>0:
 		timerNode.start()
-
+	print("lvl")
+	print(GameManager.currentLevelNumber)
 	GameManager.currentLevel=sceneName
 	GameManager.currentLevelNumber=levelNumber
 	GameManager.nextLevel=nextLevel
+	print("lvldps")
+	print(GameManager.currentLevelNumber)
 
 	
 	#pause_menu.hide()
@@ -430,6 +433,7 @@ func _next_level_transition():
 	_in_transition(2,0.7,0)
 	await anim_transition.animation_finished 
 	get_tree().change_scene_to_file("res://reward_screen/reward_screen.tscn")
+	GameManager.currentLevelNumber=levelNumber+1
 
 	
 
