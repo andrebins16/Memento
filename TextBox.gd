@@ -15,9 +15,10 @@ var punctuation_time=0.2
 signal finished_displaying()
 
 func display_text(text_to_display: String):
+	print("DISPLAYTEXT")
 	text=text_to_display
 	label.text=text_to_display
-	await resized
+	
 	custom_minimum_size.x=min(size.x,MAX_WIDTH)
 	
 	if size.x>MAX_WIDTH:
@@ -29,6 +30,7 @@ func display_text(text_to_display: String):
 	global_position.x -= size.x/2
 	global_position.y-=size.y +24
 	
+	print("PASOUU")
 	label.text=""
 	display_letter()
 	
@@ -36,7 +38,12 @@ func display_text(text_to_display: String):
 func display_letter():
 	label.text+=text[letter_index]
 	letter_index+=1
+	print("idx")
+	print(letter_index)
+	print("length")
+	print(text.length())
 	if letter_index>=text.length():
+		print("acabei")
 		finished_displaying.emit()
 		return
 	
@@ -51,5 +58,6 @@ func display_letter():
 
 
 func _on_letter_display_timer_timeout():
+	
 	display_letter()
  

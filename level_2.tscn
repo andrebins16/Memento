@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://374mjkt2uvxr"]
+[gd_scene load_steps=15 format=3 uid="uid://374mjkt2uvxr"]
 
 [ext_resource type="Texture2D" uid="uid://d0jiv3ys6rvc8" path="res://Sunny-land-files/Sunny-land-assets-files/PNG/environment/layers/tileset.png" id="1_3eyyp"]
 [ext_resource type="Script" path="res://level_2.gd" id="1_aidmh"]
 [ext_resource type="Texture2D" uid="uid://chie3or2ed07t" path="res://Jungle Asset Pack/jungle tileset/jungle tileset.png" id="2_21c2k"]
-[ext_resource type="PackedScene" uid="uid://dtxcspqnovf4g" path="res://Player/Player.tscn" id="3_otlj1"]
 [ext_resource type="PackedScene" uid="uid://djqu2i1t874xl" path="res://Collectables/Cherry.tscn" id="4_l0mu3"]
 [ext_resource type="FontFile" uid="uid://bbgsn281m83fc" path="res://audios/Minecraft.ttf" id="4_urbi6"]
 [ext_resource type="Script" path="res://BG/BG.gd" id="5_47odd"]
@@ -1485,21 +1484,6 @@ layer_0/tile_data = PackedInt32Array(-1, 393217, 4, 65535, 393217, 5, 131071, 39
 tile_set = SubResource("TileSet_267u4")
 format = 2
 
-[node name="Player" type="Node2D" parent="." groups=["destroy"]]
-
-[node name="Player" parent="Player" node_paths=PackedStringArray("platform_node", "explosion_node", "timerNode", "tilemap") instance=ExtResource("3_otlj1")]
-position = Vector2(60, 540)
-initialX = 60
-initialY = 540
-platform_node = NodePath("../../Platforms")
-explosion_node = NodePath("../../Explosions")
-time = 20.0
-timerNode = NodePath("../../Timer")
-tilemap = NodePath("../../TileMap")
-levelNumber = 1
-sceneName = "res://level_2.tscn"
-nextLevel = "res://level_3.tscn"
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Timer" type="Label" parent="UI"]
@@ -1512,6 +1496,7 @@ size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("4_urbi6")
 theme_override_font_sizes/font_size = 33
 script = SubResource("GDScript_dm64b")
+metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="UI"]
 offset_left = 1083.0
@@ -1520,8 +1505,7 @@ offset_right = 1521.0
 offset_bottom = 421.0
 scale = Vector2(0.12, 0.12)
 icon = ExtResource("6_4cbdw")
-
-[node name="Platforms" type="Node2D" parent="."]
+metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -1619,6 +1603,4 @@ visible = false
 
 [node name="TimerFala" type="Timer" parent="."]
 
-[connection signal="pressed" from="UI/Button" to="Player/Player" method="_on_button_pressed"]
-[connection signal="timeout" from="Timer" to="Player/Player" method="_on_timer_timeout" flags=18]
 [connection signal="timeout" from="TimerFala" to="." method="_on_timer_fala_timeout"]
