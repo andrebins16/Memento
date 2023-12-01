@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://374mjkt2uvxr"]
+[gd_scene load_steps=16 format=3 uid="uid://374mjkt2uvxr"]
 
 [ext_resource type="Texture2D" uid="uid://d0jiv3ys6rvc8" path="res://Sunny-land-files/Sunny-land-assets-files/PNG/environment/layers/tileset.png" id="1_3eyyp"]
 [ext_resource type="Script" path="res://level_2.gd" id="1_aidmh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://so0gw2yeli1u" path="res://audios/pause.png" id="6_4cbdw"]
 [ext_resource type="Texture2D" uid="uid://djqg7p5u451f3" path="res://Jungle Asset Pack/BACKGROUND.png" id="6_sllt4"]
 [ext_resource type="PackedScene" uid="uid://falitdl13dpd" path="res://Spikes/spikes.tscn" id="7_l05my"]
+[ext_resource type="PackedScene" uid="uid://dtxcspqnovf4g" path="res://Player/Player.tscn" id="11_lddf2"]
 [ext_resource type="PackedScene" uid="uid://dekdiknfiuknq" path="res://transition/transition.tscn" id="11_ou1la"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1kt23"]
@@ -1602,5 +1603,20 @@ speed = 0
 visible = false
 
 [node name="TimerFala" type="Timer" parent="."]
+
+[node name="Player" type="Node2D" parent="." groups=["destroy"]]
+
+[node name="Player" parent="Player" node_paths=PackedStringArray("platform_node", "explosion_node", "timerNode", "tilemap") instance=ExtResource("11_lddf2")]
+position = Vector2(79, 536)
+initialX = 79
+initialY = 536
+platform_node = NodePath("../../Explosions")
+explosion_node = NodePath("../../Explosions")
+time = 20.0
+timerNode = NodePath("../../Timer")
+tilemap = NodePath("../../TileMap")
+levelNumber = 1
+sceneName = "res://level_2.tscn"
+nextLevel = "res://level_3.tscn"
 
 [connection signal="timeout" from="TimerFala" to="." method="_on_timer_fala_timeout"]
