@@ -10,7 +10,7 @@ extends Node2D
 @onready var but=$VBoxContainer/Menu
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite.texture=load(imgs[GameManager.currentLevelNumber])
+	sprite.texture=load(imgs[GameManager.currentLevelNumber-1])
 	_out_transition(2,0.7,0)
 	await anim_transition.animation_finished 
 	transition_node.visible=false

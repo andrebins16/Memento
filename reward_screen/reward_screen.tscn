@@ -25,7 +25,7 @@ text = "Congratulations!"
 horizontal_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(567, 313)
+position = Vector2(567, 330)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("3_6ho72")
 
@@ -33,10 +33,10 @@ texture = ExtResource("3_6ho72")
 visible = false
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-offset_left = 3.0
-offset_top = 374.0
-offset_right = 1153.0
-offset_bottom = 650.0
+offset_left = 13.0
+offset_top = 422.0
+offset_right = 1163.0
+offset_bottom = 698.0
 
 [node name="VBoxContainer" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
