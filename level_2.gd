@@ -1,10 +1,10 @@
 extends Node2D
 
 @onready var timer=$TimerFala
-const lines:Array[String] = ["Now you have to race against time... Run!"]
+const lines:Array[String] = ["Agora você tem que lutar contra o tempo... Corra!"]
 
 func _ready():
-	GameManager.start_dialog(Vector2(200,400),lines)
+	GameManager.start_dialog(Vector2(150,450),lines)
 	timer.set_wait_time(5)
 	timer.start()
 

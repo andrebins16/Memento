@@ -1,21 +1,24 @@
 extends Node2D
 
 
-const lines:Array[String] = ["Meu nome é... É... Otto! Mas onde eu estou?",
+const lines:Array[String] = ["Meu nome é... é... Otto! Mas onde que eu estou???",
 							"A última coisa que me lembro é estar no hospital...",
-							"Onde está a minha amada Mary? Ela está aqui?",
-							"Preciso me lembrar dos melhores momentos da minha vida...",
-							"Mas eu não estou conseguindo me lembrar dela...",
-							"Mas eu preciso me lembrar do rosto dela, dos nossos momentos...",
-							"Agora minha missão é entrar nas minhas memórias para lembrar de Mary!"
+							"Preciso me lembrar dos bons momentos da minha vida...",
+							"Onde está a minha amada Mary??? Ela  não está aqui???",
+							"Eu não consigo me lembrar do rosto da  minha Mary...",
+							"Mas eu preciso me lembrar dela, dos nossos momentos...",
+							"Devo explorar as minhas memórias para lembrar dela!!!"
 							]
+
 
 func _ready():
 	
-	GameManager.start_dialog(Vector2(400,350),lines)
+	GameManager.start_dialog(Vector2(380,360),lines)
 
 	
 func _process(delta):
 	#print(GameManager.is_dialog_active)
 	if not GameManager.is_dialog_active:
 		get_tree().change_scene_to_file("res://tutorial.tscn")
+		
+		

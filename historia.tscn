@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6gmfm6rjkjww"]
+[gd_scene load_steps=4 format=3 uid="uid://b6gmfm6rjkjww"]
 
 [ext_resource type="Script" path="res://historia.gd" id="1_ua7q2"]
 [ext_resource type="Texture2D" uid="uid://b522i0vrey6ct" path="res://audios/hospital.png" id="2_cy6vr"]
+[ext_resource type="PackedScene" uid="uid://dekdiknfiuknq" path="res://transition/transition.tscn" id="3_de6jp"]
 
 [node name="Historia" type="Node2D"]
 script = ExtResource("1_ua7q2")
@@ -15,3 +16,6 @@ color = Color(0.0823529, 0.0431373, 0.164706, 1)
 position = Vector2(577.5, 325)
 scale = Vector2(1.79844, 1.8)
 texture = ExtResource("2_cy6vr")
+
+[node name="Transition" parent="." instance=ExtResource("3_de6jp")]
+visible = false
