@@ -7,6 +7,7 @@ signal finished_animation()
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
+	self.z_index = 1
 	texture=load(imgs[GameManager.currentLevelNumber])
 	var tween = get_tree().create_tween()
 	tween.tween_property(self,"position", destination,1.0)

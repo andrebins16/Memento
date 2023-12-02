@@ -134,6 +134,7 @@ scale = Vector2(2, 2)
 script = ExtResource("1_wxb5h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1.5, -0.25)
 shape = SubResource("RectangleShape2D_1wgmk")
 
@@ -144,17 +145,22 @@ sprite_frames = SubResource("SpriteFrames_r0vvg")
 animation = &"Jump"
 
 [node name="PlayerDetection" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+visible = false
 shape = SubResource("CircleShape2D_63smu")
 
 [node name="PlayerDeath" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDeath"]
+visible = false
 position = Vector2(-1.25, 0)
 shape = SubResource("RectangleShape2D_sl7i7")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
 target_position = Vector2(150, 0)
 hit_from_inside = true
 
