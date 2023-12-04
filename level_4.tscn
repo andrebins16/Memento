@@ -1142,7 +1142,6 @@ theme_override_font_sizes/font_size = 33
 script = SubResource("GDScript_dm64b")
 
 [node name="Button" type="Button" parent="UI"]
-visible = false
 offset_left = 1083.0
 offset_top = 13.0
 offset_right = 1521.0

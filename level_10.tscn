@@ -593,12 +593,12 @@ initialX = 112
 initialY = 572
 platform_node = NodePath("../../Platforms")
 explosion_node = NodePath("../../Explosions")
-time = 100.0
+time = 90.0
 timerNode = NodePath("../../Timer")
 tilemap = NodePath("../../TileMap")
 levelNumber = 9
 sceneName = "res://level_10.tscn"
-nextLevel = "res://main.tscn"
+nextLevel = "res://level_11.tscn"
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -615,7 +615,6 @@ script = SubResource("GDScript_2exua")
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="UI"]
-visible = false
 offset_left = 1083.0
 offset_top = 13.0
 offset_right = 1521.0

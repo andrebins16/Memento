@@ -11,6 +11,7 @@ func _ready():
 func _on_body_entered(body):
 	if body.name == "Player":
 		body.nextLevelBool=true
+		body.loading_next=true
 		queue_free()
 
 func _process(delta):

@@ -79,6 +79,8 @@ var paused=false
 @onready var rewardpos=$"../../Cherry".position
 var rewardwait=true
 
+var loading_next=false
+
 #######################################################################################
 func _ready():
 	position.x=initialX
@@ -133,6 +135,7 @@ func _physics_process(delta):
 		pauseMenu()
 		
 	if Input.is_action_just_pressed("next") or nextLevelBool:
+		anim.stop()
 		var reward_instance = reward.instantiate()
 		reward_instance.destination=camera.get_screen_center_position()
 		reward_instance.finished_animation.connect(_next_level_transition)
@@ -141,7 +144,7 @@ func _physics_process(delta):
 		nextLevelBool=false
 	
 	
-	if health>0 and not respawning and not paused:
+	if health>0 and not respawning and not paused and not loading_next:
 		handleMovement(delta)
 		handleJump(delta)
 		if Input.is_action_just_pressed("platform"):
@@ -172,6 +175,8 @@ func _on_timer_timeout():
 
 ######################################################################################
 func resetPos():
+	if loading_next:
+		return
 	respawning=true
 	#anim.play("Death")
 	#await anim.animation_finished
@@ -218,6 +223,8 @@ func resetPos():
 
 #######################################################################################
 func fullDeath():
+	if loading_next:
+		return
 	health=0
 	timerNode.stop()
 	audio_player.volume_db=0

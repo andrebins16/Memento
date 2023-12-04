@@ -222,7 +222,6 @@ script = SubResource("GDScript_2exua")
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="UI"]
-visible = false
 offset_left = 1083.0
 offset_top = 13.0
 offset_right = 1521.0

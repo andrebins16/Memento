@@ -1616,27 +1616,6 @@ sources/2 = SubResource("TileSetAtlasSource_at6xy")
 sources/3 = SubResource("TileSetAtlasSource_8r51g")
 sources/0 = SubResource("TileSetAtlasSource_imsah")
 
-[sub_resource type="GDScript" id="GDScript_2exua"]
-script/source = "extends Label
-var show=true
-@onready var timerNode = get_node(\"../../Timer\")
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	if timerNode.wait_time <=0.002:
-		text=\"\"
-		show=false
-	
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if show:
-		text = \"Time: \" + str(round(timerNode.time_left *100.0)/100.0)
-		print(\"entrou2\")
-	else:
-		text=\"\"
-"
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_syalr"]
 texture = ExtResource("2_46q1m")
 19:1/0 = 0
@@ -2852,6 +2831,27 @@ physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_syalr")
 sources/3 = SubResource("TileSetAtlasSource_i1vi2")
 
+[sub_resource type="GDScript" id="GDScript_2exua"]
+script/source = "extends Label
+var show=true
+@onready var timerNode = get_node(\"../../Timer\")
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if timerNode.wait_time <=0.002:
+		text=\"\"
+		show=false
+	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	if show:
+		text = \"Time: \" + str(round(timerNode.time_left *100.0)/100.0)
+		print(\"entrou2\")
+	else:
+		text=\"\"
+"
+
 [node name="level_7" type="Node2D"]
 script = ExtResource("1_o2frg")
 metadata/_edit_vertical_guides_ = []
@@ -2869,35 +2869,12 @@ initialX = 112
 initialY = 572
 platform_node = NodePath("../../Platforms")
 explosion_node = NodePath("../../Explosions")
-time = 80.0
+time = 90.0
 timerNode = NodePath("../../Timer")
 tilemap = NodePath("../../TileMap")
 levelNumber = 6
 sceneName = "res://level_7.tscn"
 nextLevel = "res://level_8.tscn"
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Timer" type="Label" parent="UI"]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 21.0
-offset_bottom = 55.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("5_73pvg")
-theme_override_font_sizes/font_size = 33
-script = SubResource("GDScript_2exua")
-
-[node name="Button" type="Button" parent="UI"]
-visible = false
-offset_left = 1083.0
-offset_top = 13.0
-offset_right = 1521.0
-offset_bottom = 421.0
-scale = Vector2(0.12, 0.12)
-icon = ExtResource("6_82d6y")
-flat = true
 
 [node name="Platforms" type="Node2D" parent="."]
 
@@ -3078,6 +3055,28 @@ rotation = 3.14159
 move = false
 speed = 0
 
-[connection signal="pressed" from="UI/Button" to="Player/Player" method="_on_button_pressed" flags=18]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Timer" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 21.0
+offset_bottom = 55.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("5_73pvg")
+theme_override_font_sizes/font_size = 33
+script = SubResource("GDScript_2exua")
+
+[node name="Button" type="Button" parent="UI"]
+offset_left = 1083.0
+offset_top = 13.0
+offset_right = 1521.0
+offset_bottom = 421.0
+scale = Vector2(0.12, 0.12)
+icon = ExtResource("6_82d6y")
+flat = true
+
 [connection signal="timeout" from="Timer" to="Player/Player" method="_on_timer_timeout" flags=18]
 [connection signal="timeout" from="TimerFala" to="." method="_on_timer_fala_timeout"]
+[connection signal="pressed" from="UI/Button" to="Player/Player" method="_on_button_pressed" flags=18]

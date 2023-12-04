@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends StaticBody2D
 
 @export var delay=3.0
 @onready var timer=$Timer

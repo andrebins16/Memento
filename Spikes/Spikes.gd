@@ -8,9 +8,12 @@ var direction =Vector2.ZERO
 func _ready():
 	set_gravity_scale(0)
 	direction= Vector2.DOWN.rotated(angle)
+	
 	if move:
 		$Sprite2D.modulate.g=0.4
 		$Sprite2D.modulate.b=0.4
+	else:
+		freeze=true
 	if GameManager.currentLevelNumber>5:
 		$Sprite2D.modulate = Color("#2059ff")
 

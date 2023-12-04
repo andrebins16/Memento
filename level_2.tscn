@@ -1485,29 +1485,6 @@ layer_0/tile_data = PackedInt32Array(-1, 393217, 4, 65535, 393217, 5, 131071, 39
 tile_set = SubResource("TileSet_267u4")
 format = 2
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Timer" type="Label" parent="UI"]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 21.0
-offset_bottom = 55.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("4_urbi6")
-theme_override_font_sizes/font_size = 33
-script = SubResource("GDScript_dm64b")
-metadata/_edit_use_anchors_ = true
-
-[node name="Button" type="Button" parent="UI"]
-offset_left = 1083.0
-offset_top = 13.0
-offset_right = 1521.0
-offset_bottom = 421.0
-scale = Vector2(0.12, 0.12)
-icon = ExtResource("6_4cbdw")
-metadata/_edit_use_anchors_ = true
-
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Cherry" parent="." instance=ExtResource("4_l0mu3")]
@@ -1619,4 +1596,28 @@ levelNumber = 1
 sceneName = "res://level_2.tscn"
 nextLevel = "res://level_3.tscn"
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Timer" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 21.0
+offset_bottom = 55.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_urbi6")
+theme_override_font_sizes/font_size = 33
+script = SubResource("GDScript_dm64b")
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="UI"]
+offset_left = 1083.0
+offset_top = 13.0
+offset_right = 1521.0
+offset_bottom = 421.0
+scale = Vector2(0.12, 0.12)
+icon = ExtResource("6_4cbdw")
+metadata/_edit_use_anchors_ = true
+
 [connection signal="timeout" from="TimerFala" to="." method="_on_timer_fala_timeout"]
+[connection signal="pressed" from="UI/Button" to="Player/Player" method="_on_button_pressed"]
