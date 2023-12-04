@@ -10,6 +10,6 @@ func _ready():
 
 
 func _on_timer_fala_timeout():
-	GameManager.killBox()
+	GameManager.nextLine()
 	timer.queue_free()
 	
